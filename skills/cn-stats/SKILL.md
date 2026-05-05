@@ -1,6 +1,6 @@
 ---
 name: cn-stats
-description: 中国国家统计局公开数据查询技能
+description: 中国国家统计局公开数据查询技能，当用户想查询经济、CPI、GDP、人口、房价指数等数据时触发。
 ---
 
 # 国家统计局
@@ -47,10 +47,13 @@ curl "$BASE_URL/getEsDataByCidAndDt" \
 curl "$BASE_URL/getDaCatalogTreeByIndicatorCid?indicatorCid=$NODE_ID"
 
 # 获取地区列表
-curl "$BASE_URL/getDasByDaCatalogId?daCid=$DA_CATELOG_ID&rootId=$ROOT_ID" | jq -r '.data[] | {name_text, name_value}'
+curl "$BASE_URL/getDasByDaCatalogId?daCid=$DA_CATELOG_ID&rootId=$ROOT_ID" | jq -r '.data[] | [.name_value,.name_text] | @tsv'
 
-# 获取国内全部地区
-curl "$BASE_URL/getDasByDaCatalogId?daCid=a10dceae75d245008bf4b9a0e6fe1d55" | jq -r '.data[] | {name_text, name_value}'
+# 获取国内全部省份
+curl "$BASE_URL/getDasByDaCatalogId?daCid=a10dceae75d245008bf4b9a0e6fe1d55" | jq -r '.data[] | [.name_value,.name_text] | @tsv'
+
+# 获取国内大中城市
+curl "$BASE_URL/getDasByDaCatalogId?daCid=44016f1bffeb4ea49fe34e100c6415fb" | jq -r '.data[] | [.name_value,.name_text] | @tsv'
 
 # 获取统计数据 - 多地区
 curl "$BASE_URL/getEsDataByCidAndDt" \
@@ -60,7 +63,7 @@ curl "$BASE_URL/getEsDataByCidAndDt" \
   "cid": "分类ID",
   "indicatorIds": ["指标ID"],
   "daCatalogId": "",
-  "das":[{"text":"上海市","value":"310000000000"},{"text":"江苏省","value":"320000000000"}],
+  "das":[{"text":"上海市","value":"310000000000"},{"text":"北京市","value":"110000000000"}],
   "showType": "3",
   "dts": ["202301MM-202605MM"],
   "rootId": "根节点ID"

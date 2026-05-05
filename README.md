@@ -60,8 +60,8 @@ Get cryptocurrency market data. Get Binance AI analysis report. Get blockchain n
 
 ---
 
-## 📊国家统计局 ([cn-stats](./skills/cn-stats/SKILL.md)) ![Require](https://img.shields.io/badge/curl,jq-+?label=bin)
-中国国家统计局公开数据查询技能。
+## 📊 国家统计局 ([cn-stats](./skills/cn-stats/SKILL.md)) ![Require](https://img.shields.io/badge/curl,jq-+?label=bin)
+中国国家统计局公开数据查询技能，可查询经济、CPI、GDP、人口、房价指数等数据。
 
 ---
 
