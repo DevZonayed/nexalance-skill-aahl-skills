@@ -12,6 +12,7 @@ The script `scripts/hab.sh` is a wrapper script that supports automatic installa
 ```bash
 alias hab='scripts/hab.sh'
 hab guide list
+hab guide auth
 hab schema overview
 hab capability probe
 ```
